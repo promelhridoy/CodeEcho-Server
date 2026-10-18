@@ -2,6 +2,9 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 
+import { notFoundHandler } from "./middleware/not-found";
+import { errorHandler } from "./middleware/error-handler";
+
 const app = express();
 
 app.use(
@@ -10,7 +13,7 @@ app.use(
   })
 );
 
-app.use(express.json());
+app.use(express.json({ limit: "1mb" }));
 
 // Root route
 app.get("/", (_req, res) => {
@@ -37,5 +40,11 @@ app.get("/api/health/db", (_req, res) => {
     database: connected ? "connected" : "disconnected",
   });
 });
+
+// Unknown routes must be handled before the error handler
+app.use(notFoundHandler);
+
+// Error handler must be last
+app.use(errorHandler);
 
 export default app;
