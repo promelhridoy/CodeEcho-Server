@@ -1,0 +1,30 @@
+# Dependencies (Most important - node_modules should not be uploaded to GitHub)
+node_modules/
+pnpm-debug.log*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Production Build folder
+dist/
+build/
+
+# Environment variables (Files containing secret passwords or API keys)
+.env
+.env.local
+.env.development.local
+.env.production.local
+
+# Editor directories and files (VS Code or other editor configurations)
+.vscode/*
+!.vscode/extensions.json
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# Logs
+logs
+*.log
