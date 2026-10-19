@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import { notFoundHandler } from "./middleware/not-found";
 import { errorHandler } from "./middleware/error-handler";
 import projectRoutes from "./routes/project.routes";
+import openApiRoutes from "./routes/openapi.routes";
 
 const app = express();
 
@@ -44,6 +45,9 @@ app.get("/api/health/db", (_req, res) => {
 
 // Project routes
 app.use("/api/projects", projectRoutes);
+
+// OpenAPI routes
+app.use("/api/openapi", openApiRoutes);
 
 // Unknown routes must be handled before the error handler
 app.use(notFoundHandler);
